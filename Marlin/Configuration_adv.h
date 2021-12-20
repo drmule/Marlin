@@ -2501,12 +2501,12 @@
    * on the same serial port, either here or in your board's pins file.
    */
   #define  X_SLAVE_ADDRESS 0
-  #if defined(BTTSKRE3MINIV1_0) || defined(BTTSKRE3MINIV2_0) || defined(FYSETCV1_1A)
+  #if defined(BTTSKRE3MINIV1_0) || defined(BTTSKRE3MINIV2_0) || defined(FYSETCV1_1A) || defined(FYSETCV1_1B)
   #define Y_SLAVE_ADDRESS 2
   #else
   #define  Y_SLAVE_ADDRESS 0  
   #endif
-#if defined(BTTSKRE3MINIV2_0) | defined(FYSETCV1_1A)
+#if defined(BTTSKRE3MINIV2_0) | defined(FYSETCV1_1A) || defined(FYSETCV1_1B)
   #define  Z_SLAVE_ADDRESS 1
   #else
   #define  Z_SLAVE_ADDRESS 0
@@ -2516,7 +2516,7 @@
   #define Z2_SLAVE_ADDRESS 0
   #define Z3_SLAVE_ADDRESS 0
   #define Z4_SLAVE_ADDRESS 0
-  #if defined(BTTSKRE3MINIV1_0) || defined(BTTSKRE3MINIV2_0) || defined(FYSETCV1_1A)
+  #if defined(BTTSKRE3MINIV1_0) || defined(BTTSKRE3MINIV2_0) || defined(FYSETCV1_1A) || defined(FYSETCV1_1B)
   #define E0_SLAVE_ADDRESS 3
   #else
   #define E0_SLAVE_ADDRESS 0
