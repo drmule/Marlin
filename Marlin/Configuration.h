@@ -217,17 +217,17 @@ Board name: FYSETCV1_1A, FYSETCV1_1B, FYSETCV1_2A, FYSETCV1_2B, change_value = S
 
 /*** *** ***  Section 9A - Do you have an auto bed leveling sensor installed? **** *** ***/
 
-#define Auto_bed_level // Please ignore if you DO NOT have an auto bed levelling sensor installed
+//#define Auto_bed_level // Please ignore if you DO NOT have an auto bed levelling sensor installed
 
 /*** *** ***  Section 9B - No Auto bed level? How about enabling Manual Mesh bed leveling? **** *** ***/
 
-//#define Manual_mesh_bed_level // You can enable MANUAL bed mesh leveling by enabling this option. You can also ignore if you like. Do not enable if you have ABL installed.
+#define Manual_mesh_bed_level // You can enable MANUAL bed mesh leveling by enabling this option. You can also ignore if you like. Do not enable if you have ABL installed.
 
 /*** *** *** Section 10 - If you have a sensor installed, choose the one you're using. Skip this section if you DO NOT have an auto bed levelling sensor installed *** *** ****/
 
 //#define KAVA_SENSOR //define this if you have a KAVA Lite sensor
-#define BLTOUCH //define this if you have a BL touch REGARDLESS of your BLtouch version
-#define BLTOUCH_v3_v3_1 //define this ONLY if your bltouch is version 3 or 3.1. Check at the back of BLtouch's board if you are unsure
+//#define BLTOUCH //define this if you have a BL touch REGARDLESS of your BLtouch version
+//#define BLTOUCH_v3_v3_1 //define this ONLY if your bltouch is version 3 or 3.1. Check at the back of BLtouch's board if you are unsure
 //#define FIX_MOUNTED_PROBE //define this if you have a fixed probe sensor - capacitive sensor
 //#define TOUCH_MI_PROBE // define this if you have a TOUCH-MI sensor.
 
@@ -265,11 +265,11 @@ Board name: FYSETCV1_1A, FYSETCV1_1B, FYSETCV1_2A, FYSETCV1_2B, change_value = S
 //#define Bltouch_creality_kit //choose this if you use Ender 3/pro, the original bltouch mount from Creality's BLTouch kit
 //#define Petsfang_fanduct //choose this if you use Ender 3/pro, the petsfang duct from thingiverse. thing: 2759439
 //define Simple_bltouch_mount //thingiverse: thing:3148733 Only works with stock & microswiss hotend on Ender 3/Pro Only. Use above mounts for other hotends such as E3D V6/ Mosquito
-#define Custom_ABL_mount //If you do not use any of these mounts on your machine, uncomment this to declare your own probe to nozzle values
+//#define Custom_ABL_mount //If you do not use any of these mounts on your machine, uncomment this to declare your own probe to nozzle values
 
 /*if have a Custom ABL mount and need to put your own values, please use change_value to define your values below. If not, skip this section and continue below*/
 #if ENABLED(Custom_ABL_mount) 
-  #define NOZZLE_TO_PROBE_OFFSET { -44, 14, 0 } //Measure the distance between the centre of your probe to the nozzle and replace 'change_value'. KEEP the value 0 there so you can do your z probe offset calibration. Only replace 0 if you know your values. Otherwise your nozzle may CRASH.
+  #define NOZZLE_TO_PROBE_OFFSET { -44, -14, 0 } //Measure the distance between the centre of your probe to the nozzle and replace 'change_value'. KEEP the value 0 there so you can do your z probe offset calibration. Only replace 0 if you know your values. Otherwise your nozzle may CRASH.
 #endif
 
 /*** *** *** Section 13A - Filament Change Settings. This is where you configure your Filament change/ Pause settings *** *** ***/
@@ -280,7 +280,7 @@ Board name: FYSETCV1_1A, FYSETCV1_1B, FYSETCV1_2A, FYSETCV1_2B, change_value = S
 
 /*** *** *** Section 13B - Additional Sensors. E.g. Filament Sensors. This is where you activate and define your settings *** *** ***/
 
-//#define FILAMENT_RUNOUT_SENSOR // Define this if you have a filament sensor. Please ensure it is connected to your mainboard and NOT your TFT
+#define FILAMENT_RUNOUT_SENSOR // Define this if you have a filament sensor. Please ensure it is connected to your mainboard and NOT your TFT
 //#define INVERT_FS_LOGIC // Define this ONLY if filament sensor is not detecting filament correctly. 
 //#define INVERTL_PINPULLUP_LOGIC //Define this ONLY if your filament sensor does not work even after defining INVERT_FS_LOGIC
 
@@ -351,7 +351,7 @@ Board name: FYSETCV1_1A, FYSETCV1_1B, FYSETCV1_2A, FYSETCV1_2B, change_value = S
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(gk, cheetah bltouch" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(gk, cheetah filament" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -927,11 +927,12 @@ Board name: FYSETCV1_1A, FYSETCV1_1B, FYSETCV1_2A, FYSETCV1_2B, change_value = S
   //#define ENDSTOPPULLUP_XMIN
   //#define ENDSTOPPULLUP_YMIN
   //#define ENDSTOPPULLUP_ZMIN
-
+#endif
 #if ENABLED(Auto_bed_level)
   #define ENDSTOPPULLUP_ZMIN_PROBE
   #endif
-#endif
+
+//#define Z_MIN_PROBE_ENDSTOP_INVERTING false
 
 // Enable pulldown for all endstops to prevent a floating state
 //#define ENDSTOPPULLDOWNS
@@ -1157,6 +1158,7 @@ Board name: FYSETCV1_1A, FYSETCV1_1B, FYSETCV1_2A, FYSETCV1_2B, change_value = S
  * (Automatically enables USE_PROBE_FOR_Z_HOMING.)
  */
 #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+//#define Z_MIN_PROBE_ENDSTOP //marlin < 2.0.5.2
 
 // Force the use of the probe for Z-axis homing
 #define USE_PROBE_FOR_Z_HOMING
@@ -1216,7 +1218,7 @@ Board name: FYSETCV1_1A, FYSETCV1_1B, FYSETCV1_2A, FYSETCV1_2B, change_value = S
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-#define BLTOUCH
+//#define BLTOUCH
 
 /**
  * Pressure sensor with a BLTouch-like interface
@@ -1450,8 +1452,8 @@ Board name: FYSETCV1_1A, FYSETCV1_1B, FYSETCV1_2A, FYSETCV1_2B, change_value = S
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 200
-#define Y_BED_SIZE 200
+#define X_BED_SIZE 220
+#define Y_BED_SIZE 220
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1494,7 +1496,7 @@ Board name: FYSETCV1_1A, FYSETCV1_1B, FYSETCV1_2A, FYSETCV1_2B, change_value = S
 #endif
 
 #if EITHER(MIN_SOFTWARE_ENDSTOPS, MAX_SOFTWARE_ENDSTOPS)
-  //#define SOFT_ENDSTOPS_MENU_ITEM  // Enable/Disable software endstops from the LCD
+  #define SOFT_ENDSTOPS_MENU_ITEM  // Enable/Disable software endstops from the LCD
 #endif
 
 /**
@@ -1504,7 +1506,7 @@ Board name: FYSETCV1_1A, FYSETCV1_1B, FYSETCV1_2A, FYSETCV1_2B, change_value = S
  * RAMPS-based boards use SERVO3_PIN for the first runout sensor.
  * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
  */
-//#define FILAMENT_RUNOUT_SENSOR
+#define FILAMENT_RUNOUT_SENSOR
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
  #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.
   #define NUM_RUNOUT_SENSORS   1          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
@@ -1530,13 +1532,13 @@ Board name: FYSETCV1_1A, FYSETCV1_1B, FYSETCV1_2A, FYSETCV1_2B, change_value = S
   // After a runout is detected, continue printing this length of filament
   // before executing the runout script. Useful for a sensor at the end of
   // a feed tube. Requires 4 bytes SRAM per sensor, plus 4 bytes overhead.
-  //#define FILAMENT_RUNOUT_DISTANCE_MM 25
+  #define FILAMENT_RUNOUT_DISTANCE_MM 50
 
   #ifdef FILAMENT_RUNOUT_DISTANCE_MM
     // Enable this option to use an encoder disc that toggles the runout pin
     // as the filament moves. (Be sure to set FILAMENT_RUNOUT_DISTANCE_MM
     // large enough to avoid false positives.)
-    //#define FILAMENT_MOTION_SENSOR
+    #define FILAMENT_MOTION_SENSOR
   #endif
 #endif
 
@@ -2802,7 +2804,7 @@ Board name: FYSETCV1_1A, FYSETCV1_1B, FYSETCV1_2A, FYSETCV1_2B, change_value = S
  * Set this manually if there are extra servos needing manual control.
  * Set to 0 to turn off servo support.
  */
-//#define NUM_SERVOS 3 // Servo index starts with 0 for M280 command
+#define NUM_SERVOS 1 // Servo index starts with 0 for M280 command
 
 // (ms) Delay  before the next move will start, to give the servo time to reach its target angle.
 // 300ms is a good value but you can try less delay.
